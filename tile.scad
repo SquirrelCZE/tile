@@ -18,11 +18,12 @@ module tile(class, h, center = false, centered_hole = false) difference() {
              centered_hole = centered_hole);
 }
 
-module tile_neg(class, h, center = false, centered_hole = false)
+module tile_neg(class, h, center = false, centered_hole = false) {
     translate([ 0, 0, center ? 0 : h / 2 ]) for (alpha = [ 0, 180 ])
-        rotate([ alpha, 0, 0 ]) tile_screw_pos(class = class)
-            tile_screw_hole(class = class, h = h,
-                            centered_hole = centered_hole);
+        rotate([ alpha, 0, 0 ]) tile_screw_pos(class = class) tile_screw_hole(
+            class = class, h = h, centered_hole = centered_hole);
+    tile_center_hole(class, h + 2, center = center);
+}
 
 module tile_pos(class, h, center = false)
     linear_extrude(height = h, center = center, convexity = 10)
@@ -58,6 +59,16 @@ module tile_H(class, h) color("purple") render() difference() {
             tile_screw_hole(class = class, h = h);
 }
 
+module tile_raw_plate(class, x, y, t) {
+
+    for (i = [0:x - 1], j = [0:y - 1])
+        translate([ i * Ta(class), j * Ta(class), 0 ]) difference() {
+            tile_pos(class, h = t, center = false);
+            tile_screw_pos(class = class)
+                cylinder(d = Tscrew_d(class), h = 100, center = true);
+        }
+}
+
 //          Implementation
 // ------------------------------------
 
@@ -73,13 +84,7 @@ module tile_base_shape(l, corner_r) {
 }
 
 module tile_relief(class, a, corner_r, t, nut_d) {
-    for (m = [ 0, 1 ]) mirror([ m, 0, 0 ]) tile_screw_pos(class) {
-            rotate([ 0, 0, 30 ]) circle(d = nut_d + t * 2, $fn = 6);
-        }
-    difference() {
-        tile_base_shape(a, corner_r);
-        tile_base_shape(a - t * 2, corner_r);
-    }
+    tile_base_shape(a, corner_r);
 }
 
 module tile_screw_pos(class) {
@@ -117,10 +122,4 @@ module tile_screw_hole(class, h, centered_hole = false) {
 
 module tile_tube_hole(d) {
     rotate([ 90, 0, 0 ]) cylinder(d = d, h = 100, center = true);
-}
-
-render_part = "nothing";
-if(render_part == "tile_H"){
-    $fn = 128;
-    tile_H(T24, 4);
 }

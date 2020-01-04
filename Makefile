@@ -8,7 +8,7 @@ example/%.stl: example/%.scad
 	openscad $< -o $@
 
 example/%.png: example/%.scad
-	openscad $< --render --autocenter --viewall --imgsize=640,480 -o $@
+	openscad $< --autocenter --viewall --imgsize=640,480 -o $@
 
 .PHONY: all
 all: $(STL) $(PNG)

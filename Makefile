@@ -5,13 +5,16 @@ STL=$(addprefix example/, $(notdir $(SCAD:.scad=.stl)))
 PNG=$(addprefix example/, $(notdir $(SCAD:.scad=.png)))
 
 example/%.stl: example/%.scad
-	openscad $< -o $@
+	openscad $< -D \$$fn=64 -o $@
 
 example/%.png: example/%.scad
-	openscad $< --autocenter --viewall --imgsize=640,480 -o $@
+	openscad $< --autocenter --viewall --imgsize=640,480 -D \$$fn=64 -o $@
 
-.PHONY: all example/Readme.md
-all: $(STL) $(PNG)
-
-example/Readme.md: $(PNG)
+example/README.md: $(PNG)
 	python3 example/gen_readme.py $(SCAD:.scad=) > example/README.md
+
+shape.png: dxf.scad tile.scad
+	openscad dxf.scad --autocenter --viewall --render --camera=0,0,10,0,0,0,10 -D \$$fn=64 -o $@
+
+.PHONY: all 
+all: $(STL) $(PNG) example/README.md shape.png

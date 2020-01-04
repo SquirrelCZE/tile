@@ -10,5 +10,8 @@ example/%.stl: example/%.scad
 example/%.png: example/%.scad
 	openscad $< --autocenter --viewall --imgsize=640,480 -o $@
 
-.PHONY: all
+.PHONY: all gen_example_readme
 all: $(STL) $(PNG)
+
+gen_example_readme:
+	python3 example/gen_readme.py $(SCAD:.scad=) > example/README.md

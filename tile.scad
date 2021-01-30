@@ -57,11 +57,12 @@ module tile_H(class, h, n = 1, center_t = undef) render()
 	for (z = [ 0, top_offset ])
 		translate([ 0, 0, z ]) tile_center_hole(class, h = h);
 
-	mirror([ 1, 0, 0 ]) tile_screw_pos(class = class)
-	    translate([ 0, 0, h / 2 ]) tile_screw_hole(class = class, h = h);
+  mirror([0,0,1])
+      mirror([ 1, 0, 0 ]) tile_screw_pos(class = class)
+	    translate([ 0, 0, -h / 2 ]) tile_screw_hole(class = class, h = h);
 
 	tile_screw_pos(class = class)
-	    translate([ 0, 0, top_offset + Tt(class) ]) rotate([ 180, 0, 0 ])
+	    translate([ 0, 0, top_offset + Tt(class) ])
 		tile_screw_hole(class = class, h = h);
 }
 

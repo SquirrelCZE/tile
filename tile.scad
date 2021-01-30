@@ -60,7 +60,6 @@ module tile_H(class, h) color("purple") render() difference() {
 }
 
 module tile_raw_plate(class, x, y, t) {
-
     for (i = [0:x - 1], j = [0:y - 1])
         translate([ i * Ta(class), j * Ta(class), 0 ]) difference() {
             tile_pos(class, h = t, center = false);
@@ -112,7 +111,7 @@ module tile_screw_hole(class, h, centered_hole = false) {
                     cylinder(d = Tnut_d(class), h = h, $fn = 6);
             }
     } else {
-        translate([ 0, 0, Tt(class) - h / 2 ]) {
+        rotate([ 180, 0, 0 ]) translate([ 0, 0, Tt(class) - h / 2 ]) {
             cube([ nut_e, Tscrew_d(class), layer_t * 2 ], center = true);
             rotate([ 0, 0, 30 ]) cylinder(
                 d = Tnut_d(class), h = h - Tt(class) + Tnut_h(class), $fn = 6);

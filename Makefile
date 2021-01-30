@@ -1,8 +1,8 @@
 # inspired based on https://github.com/olikraus/scad/blob/master/train_tube_track/Makefile
 
-SCAD=$(wildcard example/*.scad)
-STL=$(addprefix example/, $(notdir $(SCAD:.scad=.stl)))
-PNG=$(addprefix example/, $(notdir $(SCAD:.scad=.png)))
+EXAMPLE_SCAD=$(wildcard example/*.scad)
+EXAMPLE_STL=$(addprefix example/, $(notdir $(EXAMPLE_SCAD:.scad=.stl)))
+EXAMPLE_PNG=$(addprefix example/, $(notdir $(EXAMPLE_SCAD:.scad=.png)))
 
 example/%.stl: example/%.scad
 	openscad $< -D \$$fn=64 -o $@
@@ -10,11 +10,15 @@ example/%.stl: example/%.scad
 example/%.png: example/%.scad
 	openscad $< --autocenter --viewall --imgsize=640,480 -D \$$fn=64 -o $@
 
-example/README.md: $(PNG)
-	python3 example/gen_readme.py $(SCAD:.scad=) > example/README.md
+example/README.md: $(EXAMPLE_PNG)
+	python3 example/gen_readme.py $(EXAMPLE_SCAD:.scad=) > example/README.md
 
-shape.png: dxf.scad tile.scad
-	openscad dxf.scad --autocenter --viewall --render --camera=0,0,10,0,0,0,10 -D \$$fn=64 -o $@
+DXF_SCAD=$(wildcard dxf/*.scad)
+DXF_DXF=$(addprefix dxf/, $(notdir $(DXF_SCAD:.scad=.dxf)))
+
+dxf/%.dxf: dxf/%.scad
+	openscad $< -D \$$fn=128  -o $@
+
 
 .PHONY: all 
-all: $(STL) $(PNG) example/README.md shape.png
+all: $(EXAMPLE_STL) $(EXAMPLE_PNG) $(DXF_DXF) example/README.md

@@ -4,7 +4,7 @@
 For our robotics project, we made a universal mount for our parts.
 This is just a shape with screw coordinates, that is used on most of our parts.
 
-This makes it possible to use the parts as lego, where you can move things around the robot, because they all shere the same mount.
+This makes it possible to use the parts as lego, where you can move things around the robot, because they all share the same mount.
 Apart from the shape itself, the source file `tile.scad` also contains SCAD modules that are parts itself. 
 
 We prepared two sets of tile dimensions - T24 and T36. We however solely rely on the T24 for one. Which is guaranteed to not to change.

@@ -5,16 +5,16 @@
     {
       "Vendor":      "KiCad",
       "Application": "Pcbnew",
-      "Version":     "5.1.5"
+      "Version":     "5.1.5+dfsg1-2build2"
     },
-    "CreationDate":  "2020-02-18T12:10:53+01:00"
+    "CreationDate":  "2021-02-09T17:16:18+01:00"
   },
   "GeneralSpecs":
   {
     "ProjectId":
     {
-      "Name": "base",
-      "GUID": "62617365-2e6b-4696-9361-645f70636258",
+      "Name": "base2.0",
+      "GUID": "62617365-322e-4302-9e6b-696361645f70",
       "Revision": "rev?"
     },
     "Size":
@@ -22,17 +22,25 @@
       "X": 24.200,
       "Y": 24.200
     },
-    "LayerNumber": 2,
+    "LayerNumber": 4,
     "BoardThickness":  1.600
   },
   "DesignRules":
   [
     {
       "Layers": "Outer",
-      "PadToPad":  0.250,
-      "PadToTrack":  0.250,
-      "TrackToTrack":  0.250,
-      "MinLineWidth":  0.500,
+      "PadToPad":  0.200,
+      "PadToTrack":  0.200,
+      "TrackToTrack":  0.200,
+      "MinLineWidth":  0.250,
+      "TrackToRegion":  0.200,
+      "RegionToRegion":  0.200
+    },
+    {
+      "Layers": "Inner",
+      "PadToPad":  0.200,
+      "PadToTrack":  0.200,
+      "TrackToTrack":  0.200,
       "TrackToRegion":  0.250,
       "RegionToRegion":  0.250
     }
@@ -40,37 +48,47 @@
   "FilesAttributes":
   [
     {
-      "Path":  "base-F_Cu.gbr",
+      "Path":  "base2.0-CuTop.gbr",
       "FileFunction":  "Copper,L1,Top",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "base-B_Cu.gbr",
-      "FileFunction":  "Copper,L2,Bot",
+      "Path":  "base2.0-CuBottom.gbr",
+      "FileFunction":  "Copper,L4,Bot",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "base-F_SilkS.gbr",
+      "Path":  "base2.0-PasteBottom.gbr",
+      "FileFunction":  "SolderPaste,Bot",
+      "FilePolarity":  "Positive"
+    },
+    {
+      "Path":  "base2.0-PasteTop.gbr",
+      "FileFunction":  "SolderPaste,Top",
+      "FilePolarity":  "Positive"
+    },
+    {
+      "Path":  "base2.0-SilkTop.gbr",
       "FileFunction":  "Legend,Top",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "base-B_SilkS.gbr",
+      "Path":  "base2.0-SilkBottom.gbr",
       "FileFunction":  "Legend,Bot",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "base-F_Mask.gbr",
-      "FileFunction":  "SolderMask,Top",
-      "FilePolarity":  "Negative"
-    },
-    {
-      "Path":  "base-B_Mask.gbr",
+      "Path":  "base2.0-MaskBottom.gbr",
       "FileFunction":  "SolderMask,Bot",
       "FilePolarity":  "Negative"
     },
     {
-      "Path":  "base-Edge_Cuts.gbr",
+      "Path":  "base2.0-MaskTop.gbr",
+      "FileFunction":  "SolderMask,Top",
+      "FilePolarity":  "Negative"
+    },
+    {
+      "Path":  "base2.0-EdgeCuts.gbr",
       "FileFunction":  "Profile",
       "FilePolarity":  "Positive"
     }
@@ -80,6 +98,10 @@
     {
       "Type":  "Legend",
       "Notes":  "Layer F.SilkS"
+    },
+    {
+      "Type":  "SolderPaste",
+      "Notes":  "Layer F.Paste"
     },
     {
       "Type":  "SolderMask",
@@ -101,6 +123,10 @@
     {
       "Type":  "SolderMask",
       "Notes":  "Layer B.Mask"
+    },
+    {
+      "Type":  "SolderPaste",
+      "Notes":  "Layer B.Paste"
     },
     {
       "Type":  "Legend",

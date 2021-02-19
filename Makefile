@@ -1,8 +1,8 @@
 # inspired based on https://github.com/olikraus/scad/blob/master/train_tube_track/Makefile
 
 EXAMPLE_SCAD=$(wildcard example/*.scad)
-EXAMPLE_STL=$(addprefix example/, $(notdir $(EXAMPLE_SCAD:.scad=.stl)))
-EXAMPLE_PNG=$(addprefix example/, $(notdir $(EXAMPLE_SCAD:.scad=.png)))
+EXAMPLE_STL=$(EXAMPLE_SCAD:.scad=.stl)
+EXAMPLE_PNG=$(EXAMPLE_SCAD:.scad=.png)
 
 example/%.stl: example/%.scad
 	openscad $< -D \$$fn=64 -o $@

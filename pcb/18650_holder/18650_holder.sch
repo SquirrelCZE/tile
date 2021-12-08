@@ -1,0 +1,146 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:Battery_Cell BT1
+U 1 1 6015ACDE
+P 5100 3950
+F 0 "BT1" H 5218 4046 50  0000 L CNN
+F 1 "Battery_Cell" H 5218 3955 50  0000 L CNN
+F 2 "tile:18650_holder" V 5100 4010 50  0001 C CNN
+F 3 "~" V 5100 4010 50  0001 C CNN
+	1    5100 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 4050 4900 4050
+$Comp
+L power:VCC #PWR0101
+U 1 1 6015C33D
+P 4900 3750
+F 0 "#PWR0101" H 4900 3600 50  0001 C CNN
+F 1 "VCC" H 4917 3923 50  0000 C CNN
+F 2 "" H 4900 3750 50  0001 C CNN
+F 3 "" H 4900 3750 50  0001 C CNN
+	1    4900 3750
+	1    0    0    -1  
+$EndComp
+Connection ~ 4900 3750
+Wire Wire Line
+	4900 3750 5100 3750
+$Comp
+L power:GND #PWR0102
+U 1 1 6015C878
+P 4900 4050
+F 0 "#PWR0102" H 4900 3800 50  0001 C CNN
+F 1 "GND" H 4905 3877 50  0000 C CNN
+F 2 "" H 4900 4050 50  0001 C CNN
+F 3 "" H 4900 4050 50  0001 C CNN
+	1    4900 4050
+	1    0    0    -1  
+$EndComp
+Connection ~ 4900 4050
+$Comp
+L Connector:Conn_01x01_Male J1
+U 1 1 611E2D1A
+P 4650 3550
+F 0 "J1" V 4712 3594 50  0000 L CNN
+F 1 "Conn_01x01_Male" V 4803 3594 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.5mm_Pad_Via" H 4650 3550 50  0001 C CNN
+F 3 "~" H 4650 3550 50  0001 C CNN
+	1    4650 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x01_Male J2
+U 1 1 611E3324
+P 4650 4250
+F 0 "J2" V 4804 4162 50  0000 R CNN
+F 1 "Conn_01x01_Male" V 4713 4162 50  0000 R CNN
+F 2 "MountingHole:MountingHole_3.5mm_Pad_Via" H 4650 4250 50  0001 C CNN
+F 3 "~" H 4650 4250 50  0001 C CNN
+	1    4650 4250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4650 3750 4900 3750
+Wire Wire Line
+	4650 4050 4900 4050
+$Comp
+L Device:Battery_Cell BT2
+U 1 1 611E60DF
+P 4050 3950
+F 0 "BT2" H 4168 4046 50  0000 L CNN
+F 1 "Battery_Cell" H 4168 3955 50  0000 L CNN
+F 2 "tile:18650_holder" V 4050 4010 50  0001 C CNN
+F 3 "~" V 4050 4010 50  0001 C CNN
+	1    4050 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 4050 3850 4050
+$Comp
+L power:VCC #PWR0103
+U 1 1 611E60E6
+P 3850 3750
+F 0 "#PWR0103" H 3850 3600 50  0001 C CNN
+F 1 "VCC" H 3867 3923 50  0000 C CNN
+F 2 "" H 3850 3750 50  0001 C CNN
+F 3 "" H 3850 3750 50  0001 C CNN
+	1    3850 3750
+	1    0    0    -1  
+$EndComp
+Connection ~ 3850 3750
+Wire Wire Line
+	3850 3750 4050 3750
+$Comp
+L power:GND #PWR0104
+U 1 1 611E60EE
+P 3850 4050
+F 0 "#PWR0104" H 3850 3800 50  0001 C CNN
+F 1 "GND" H 3855 3877 50  0000 C CNN
+F 2 "" H 3850 4050 50  0001 C CNN
+F 3 "" H 3850 4050 50  0001 C CNN
+	1    3850 4050
+	1    0    0    -1  
+$EndComp
+Connection ~ 3850 4050
+$Comp
+L Connector:Conn_01x01_Male J3
+U 1 1 611E60F5
+P 3600 3550
+F 0 "J3" V 3662 3594 50  0000 L CNN
+F 1 "Conn_01x01_Male" V 3753 3594 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.5mm_Pad_Via" H 3600 3550 50  0001 C CNN
+F 3 "~" H 3600 3550 50  0001 C CNN
+	1    3600 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x01_Male J4
+U 1 1 611E60FB
+P 3600 4250
+F 0 "J4" V 3754 4162 50  0000 R CNN
+F 1 "Conn_01x01_Male" V 3663 4162 50  0000 R CNN
+F 2 "MountingHole:MountingHole_3.5mm_Pad_Via" H 3600 4250 50  0001 C CNN
+F 3 "~" H 3600 4250 50  0001 C CNN
+	1    3600 4250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3600 3750 3850 3750
+Wire Wire Line
+	3600 4050 3850 4050
+$EndSCHEMATC

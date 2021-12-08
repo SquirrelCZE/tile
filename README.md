@@ -16,7 +16,9 @@ dxf/ folder contains .dxf renders of various tile configurations, these should b
 
 ## example
 
-example/ folder contains example of included modules in SCAD that you can use.
+example/ folder contains example of included modules in SCAD that you can use, such as simple tile:
+
+![](example/tile_T24_2mm.png)
 
 ## PCB
 

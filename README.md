@@ -22,6 +22,15 @@ example/ folder contains example of included modules in SCAD that you can use.
 
 We also have a set of various PCBs using this shape as their PCB shape, these are in various stage of development.
 
+### ready to be used
+
+![](pcb/18650_holder/18650_holder.png)
+![](pcb/power_dwitch/power_dwitch.png)
+
+### prototype
+
+![](pcb/base2.0/base2.0.png)
+
 ## drawings
 
 All dimensions are in `mm`.

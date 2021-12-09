@@ -38,14 +38,35 @@ The rest of the repository is as follows:
 
 ### Examples
 
-![](example/tile_T24_2mm.png)
+Simple square with T24 mount on both sides:
+
+![](example/tile_T24_5mm.png)
 
 ### PCBs
 
-![](pcb/18650_holder/18650_holder.png)
+There are two PCBs that are in production stage (that is they may be improved in time but there is little motivation to do so). 
+Both are designed in KiCAD and we buy them in bulk.
+
+The first one is small 4-layer power distribution board for use with our servomotors.
+The power is brought in usually via the XT30 connector space and we have multiple of these on the robot itself.
+We have custom footprint for servoconnectors that is compatible with servomotor connectors with 2.54/2mm spacing with pins in following configuration: S|VCC|GND. 
+The idea is that servomotors are connected to free servo connectors and one is left to connect the S| |GND pair to the controller (that is, without the VCC line).
+
 ![](pcb/power_dwitch/power_dwitch.png)
 
+Second board is just really simple holder for two housings for 18650 batteries, that are pararelly connected. 
+There are no connectros to be used, rather we expect the wires to be soldered directly on the board itself.
+
+![](pcb/18650_holder/18650_holder.png)
+
 ### Prototype PCBs
+
+We have a prototype of board with STM32G4 processor that can be powered from PDB board above.
+The board is designed to control our servomotors or to be attached to same communication bus.
+
+The v1 prototype worked (as we could write code for it and blink a LED), but it misses logic level shifter for the servo bus which makes it not really usable.
+
+The v2 fixes that and even adds IMU, however we should switch to smaller package for the processor to fit all on one side of the PCB and we can't do that now given chip shortage, so v2 is delayed until we can do that.
 
 ![](pcb/base2.0/base2.0.png)
 

@@ -1,39 +1,53 @@
 
 # Tile
 
-For our robotics project, we made a universal mount for our parts.
-This is just a shape with screw coordinates, that is used on most of our parts.
+Tile is a generic mounting system designed for small robots. 
+It is a specification of dimensions of one mount position with positions of four screws.
+The idea is that one can attach anything to said position, from 3D printed parts to PCBs.
 
-This makes it possible to use the parts as lego, where you can move things around the robot, because they all share the same mount.
-Apart from the shape itself, the source file `tile.scad` also contains SCAD modules that are parts itself. 
+This gives as abillity to easily reuse parts and rebuild the robot in different configuration easily, same way one could expect from LEGO.
+The key difference is that it is more sturdy (as screws are used) and it is easy to make compatible PCB.
 
-We prepared two sets of tile dimensions - T24 and T36. We however solely rely on the T24 for one. Which is guaranteed to not to change.
-The T36 size is subject to change in the future.
+We intentially designed the tile to allow mounting of parts on thin wall from both sides.
+This is achieved by shifting the holes in a way, that when the shape is flipped, the holes won't collide (even when one uses nuts to screw something in place)
 
-## DXF
+The position is shaped like square with beveled corners, this makes it possible to form a grid of mount positions. 
+Bigger parts can overlap multiple tiles, it is up to designed to decided whenever that is sensible choice.
+Corners are beveled to create a spot between positions on grid for wires.
 
-dxf/ folder contains .dxf renders of various tile configurations, these should be importable by other CADs and software.
+Given that we use this for 3D printing, the models expect nuts to be inserted in the models to get proper screw thread.
 
-## example
+The most used configuration T24 is 24x24mm square with four positions for M2 screws.
 
-example/ folder contains example of included modules in SCAD that you can use, such as simple tile:
+The tile is used in our robot Koke heavily https://schpin.org/robots/koke.html and we allready benefited from this on another robot that just reused a lot of the parts.
+
+## Repository content
+
+The main truth for the tile is it's SCAD library - `tile.scad`.
+The rest of the repository is as follows:
+
+ * **dxf/** contains dxf shapes for some grid layous that can be directly imported to other CADs made with SCAD. Note that SCAD approximates circles with n-gon.	
+ * **example/** simple examples of tile shapes that can be used
+ * **extra/** contains more complex models using tile, such as holder for raspberry or 90degree bracket.
+ * **pcb/** PCBs used for our robot designed in KiCAD that are Tile compatible.
+
+
+## Gallery
+
+### Examples
 
 ![](example/tile_T24_2mm.png)
 
-## PCB
-
-We also have a set of various PCBs using this shape as their PCB shape, these are in various stage of development.
-
-### ready to be used
+### PCBs
 
 ![](pcb/18650_holder/18650_holder.png)
 ![](pcb/power_dwitch/power_dwitch.png)
 
-### prototype
+### Prototype PCBs
 
 ![](pcb/base2.0/base2.0.png)
 
-## drawings
+## Drawings of T24
 
 All dimensions are in `mm`.
 

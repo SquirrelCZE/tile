@@ -1,4 +1,6 @@
 
+![](small.png)
+
 # Tile
 
 Tile is a generic mounting system designed for small robots. 

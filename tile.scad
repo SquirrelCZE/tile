@@ -2,7 +2,9 @@
 //      0   1             2         3  4      5      6
 //    [ a,  screw_coord,  corner_r, t, nut_d, nut_h, screw_d]
 T36 = [ 36, [ 13, 8, 0 ], 6.000000, 3, 6.000, 2.500, 3 ];
-T24 = [ 24, [ 08, 4, 0 ], 4.000000, 2, 4.600, 1.800, 2 ];
+T24 = [ 24, [ 08, 4, 0 ], 4.000000, 2, 4.750, 1.800, 2 ];
+
+tile_k = 0.07;
 
 function Ta(class) = class[0];
 function Tscrew_coord(class) = class[1];
@@ -12,7 +14,7 @@ function Tnut_d(class) = class[4];
 function Tnut_h(class) = class[5];
 function Tscrew_d(class) = class[6];
 
-module tile(class, h, center = false, centered_hole = false) difference() {
+module tile(class = T24, h = 5, center = false, centered_hole = false) difference() {
 	tile_pos(class = class, h = h, center = center);
 	tile_neg(class = class, h = h, center = center,
 		 centered_hole = centered_hole);
@@ -30,7 +32,7 @@ module tile_pos(class, h, center = false)
     linear_extrude(height = h, center = center, convexity = 10)
 	tile_relief(class = class);
 
-module tile_H(class, h, n = 1, center_t = undef) render()
+module tile_H(class = T24, h = 5, n = 1, center_t = undef) render()
     difference() {
 	top_offset = n * Ta(class) + h;
 	z_center = n * Ta(class) / 2 + h;
@@ -108,7 +110,8 @@ module tile_raw_plate(class, x, y, t) {
 // ------------------------------------
 
 module tile_center_hole(class, h, center = false) {
-	cylinder(d = Ta(class) / 2, h = h, center = center, $fn = 8);
+  translate([ 0, 0, - tile_k ])
+	  cylinder(d = Ta(class) / 2, h = h + 2, center = center, $fn = 8);
 }
 
 module tile_base_shape(l, corner_r) {
@@ -143,22 +146,37 @@ module tile_screw_hole(class, h, centered_hole = false) {
 	if (centered_hole) {
 		for (alpha = [ 0, 180 ])
 			rotate([ alpha, 0, 0 ])
-			    translate([ 0, 0, Tt(class) / 2 ]) {
+			translate([ 0, 0, Tt(class) / 2 ])
+				difference() {
+					union(){
+						cube([ nut_e, Tscrew_d(class), layer_t * 2 ],
+				     	center = true);
+						rotate([ 0, 0, 30 ])
+				    	cylinder(d = Tnut_d(class), h = h, $fn = 6);
+					}
+					tile_screw_clips(class);
+				}
+	} else {
+		rotate([180,0,0])
+		translate([ 0, 0, Tt(class) - h / 2 ]) difference() {
+			union() {
 				cube([ nut_e, Tscrew_d(class), layer_t * 2 ],
 				     center = true);
 				rotate([ 0, 0, 30 ])
-				    cylinder(d = Tnut_d(class), h = h, $fn = 6);
+					cylinder(
+				    d = Tnut_d(class),
+			  		h = h - Tt(class) + Tnut_h(class), $fn = 6);
 			}
-	} else {
-		rotate([180,0,0])
-		translate([ 0, 0, Tt(class) - h / 2 ]) {
-			cube([ nut_e, Tscrew_d(class), layer_t * 2 ],
-			     center = true);
-			rotate([ 0, 0, 30 ]) cylinder(
-			    d = Tnut_d(class),
-			    h = h - Tt(class) + Tnut_h(class), $fn = 6);
+			tile_screw_clips(class);
 		}
 	}
+}
+
+module tile_screw_clips(class) {
+	for(an=[0, 120, -120])
+		rotate([0,0,an+30])
+		translate([Tnut_d(class)/2, 0, Tnut_h(class)])
+			sphere(r=Tnut_d(class)*0.03);
 }
 
 module tile_tube_hole(d) {

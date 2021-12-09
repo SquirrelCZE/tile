@@ -42,6 +42,13 @@ Simple square with T24 mount on both sides:
 
 ![](example/tile_T24_5mm.png)
 
+### Koke
+
+This is an example of more complex assembly: part of Koke's leg.
+You can see that the parts are connected with tiles (such as the tip of the leg) and that there are multiple tile mount spots.
+
+![](femur.png)
+
 ### PCBs
 
 There are two PCBs that are in production stage (that is they may be improved in time but there is little motivation to do so). 

@@ -7,4 +7,4 @@ print("# Gallery of tile examples")
 
 for arg in args:
     print("## " + arg + ".scad")
-    print("![" + arg + "](" + arg + ".png)")
+    print("![" + arg + "](../" + arg + ".png)")

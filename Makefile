@@ -4,7 +4,7 @@ EXAMPLE_SCAD=$(wildcard example/*.scad)
 EXAMPLE_STL=$(EXAMPLE_SCAD:.scad=.stl)
 EXAMPLE_PNG=$(EXAMPLE_SCAD:.scad=.png)
 
-example/%.stl: example/%.scad
+example/%.stl: example/%.scad tile.scad
 	openscad $< -D \$$fn=64 -o $@
 
 example/%.png: example/%.scad
